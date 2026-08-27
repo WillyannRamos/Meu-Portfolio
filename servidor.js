@@ -1,28 +1,10 @@
 const express = require('express');
-const mysql = require('mysql2');
 const path = require('path');
+const { db } = require('./firebase.js');
+const { collection, addDoc } = require('firebase/firestore');
 
 const app = express();
 const porta = 3000;
-
-// CONEXÃO COM MYSQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'meu_site_db'
-});
-
-// TESTAR CONEXÃO
-db.connect((erro) => {
-    if (erro) {
-        console.error('\n❌ ERRO AO CONECTAR AO MYSQL');
-        console.error(erro.message);
-        return;
-    }
-    console.log('\n✅ BANCO DE DADOS CONECTADO COM SUCESSO!\n');
-});
 
 // MIDDLEWARES
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +22,7 @@ app.get('/sucesso.html', (req, res) => {
 });
 
 // ROTA 1 — FORMULÁRIO DE SERVIÇOS (nome + email)
-app.post('/salvar', (req, res) => {
+app.post('/salvar', async (req, res) => {
     const { nome, email } = req.body;
 
     if (!nome || !email) {
@@ -53,25 +35,30 @@ app.post('/salvar', (req, res) => {
         `);
     }
 
-    const sql = "INSERT INTO clientes (nome, email, assunto, mensagem) VALUES (?, ?, '', '')";
-    db.query(sql, [nome, email], (erro, resultado) => {
-        if (erro) {
-            console.error(erro);
-            return res.send(`
-                <html><body style="text-align:center; padding:50px; font-family:Arial;">
-                    <h2>❌ Erro ao salvar</h2>
-                    <p>Não foi possível salvar seus dados.</p>
-                    <a href="/servicos.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:#4f46e5; color:white; border-radius:6px; text-decoration:none;">Voltar</a>
-                </body></html>
-            `);
-        }
-        console.log('✅ Cliente salvo — ID:', resultado.insertId);
+    try {
+        await addDoc(collection(db, "clientes"), {
+            nome: nome,
+            email: email,
+            assunto: '',
+            mensagem: '',
+            data: new Date()
+        });
+        console.log('✅ Cliente salvo no Firestore');
         res.redirect('/sucesso.html');
-    });
+    } catch (erro) {
+        console.error('❌ Erro ao salvar:', erro);
+        return res.send(`
+            <html><body style="text-align:center; padding:50px; font-family:Arial;">
+                <h2>❌ Erro ao salvar</h2>
+                <p>Não foi possível salvar seus dados.</p>
+                <a href="/servicos.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:#4f46e5; color:white; border-radius:6px; text-decoration:none;">Voltar</a>
+            </body></html>
+        `);
+    }
 });
 
 // ROTA 2 — FORMULÁRIO DE CONTATO (nome + email + assunto + mensagem)
-app.post('/salvar-contato', (req, res) => {
+app.post('/salvar-contato', async (req, res) => {
     const { nome, email, assunto, mensagem } = req.body;
 
     if (!nome || !email || !assunto || !mensagem) {
@@ -83,27 +70,32 @@ app.post('/salvar-contato', (req, res) => {
         `);
     }
 
-    const sql = "INSERT INTO clientes (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)";
-    db.query(sql, [nome, email, assunto, mensagem], (erro, resultado) => {
-        if (erro) {
-            console.error('❌ Erro ao salvar:', erro);
-            return res.send(`
-                <html><body style="text-align:center; padding:50px; font-family:Arial;">
-                    <h2>❌ Erro ao enviar mensagem</h2>
-                    <p>Verifique o banco de dados e tente novamente.</p>
-                    <a href="/contato.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:#4f46e5; color:white; border-radius:6px; text-decoration:none;">Voltar</a>
-                </body></html>
-            `);
-        }
-        console.log('✅ Mensagem salva — ID:', resultado.insertId, '| Assunto:', assunto);
+    try {
+        await addDoc(collection(db, "clientes"), {
+            nome: nome,
+            email: email,
+            assunto: assunto,
+            mensagem: mensagem,
+            data: new Date()
+        });
+        console.log('✅ Mensagem salva no Firestore | Assunto:', assunto);
         res.redirect('/sucesso.html');
-    });
+    } catch (erro) {
+        console.error('❌ Erro ao enviar mensagem:', erro);
+        return res.send(`
+            <html><body style="text-align:center; padding:50px; font-family:Arial;">
+                <h2>❌ Erro ao enviar mensagem</h2>
+                <p>Tente novamente mais tarde.</p>
+                <a href="/contato.html" style="display:inline-block; margin-top:20px; padding:10px 20px; background:#4f46e5; color:white; border-radius:6px; text-decoration:none;">Voltar</a>
+            </body></html>
+        `);
+    }
 });
 
 // INICIAR SERVIDOR
 app.listen(porta, () => {
     console.log('\n======================================');
     console.log('🚀 SERVIDOR RODANDO!');
-    console.log(`🌐 http://localhost:${porta}`);
+    console.log('🌐 http://localhost:' + porta);
     console.log('======================================\n');
 });
