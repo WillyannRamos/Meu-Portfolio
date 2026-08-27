@@ -1,260 +1,150 @@
-    <!DOCTYPE html>
-    <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Serviço | Willyann Teodoro Ramos</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-    <head>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                Willyann<span>.dev</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Início</a></li>
+                    <li><a href="sobre.html"><i class="fa-solid fa-user"></i> Sobre</a></li>
+                    <li><a href="servicos.html" class="ativo"><i class="fa-solid fa-laptop-code"></i> Serviços</a></li>
+                    <li><a href="projetos.html"><i class="fa-solid fa-folder-open"></i> Projetos</a></li>
+                    <li><a href="contato.html"><i class="fa-solid fa-envelope"></i> Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <meta charset="UTF-8">
-
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        >
-
-        <title>
-            Solicitar Serviço | Willyann Teodoro Ramos
-        </title>
-
-        <link
-            rel="stylesheet"
-            href="estilo.css"
-        >
-
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-        > 
- 
-    </head> 
- 
-    <body> 
- 
-        <!-- NAVBAR --> 
- 
-        <header class="navbar"> 
- 
-            <div class="nav-container"> 
- 
-                <a href="index.html" class="logo"> 
-                    Willyann<span>.dev</span> 
-                </a> 
- 
-                <nav> 
- 
-                    <ul class="nav-links"> 
- 
-                        <li> 
-                            <a href="index.html"> 
-                                <i class="fa-solid fa-house"></i> 
-                                Início 
-                            </a> 
-                        </li> 
- 
-                        <li> 
-                            <a href="sobre.html"> 
-                                <i class="fa-solid fa-user"></i> 
-                                Sobre 
-                            </a> 
-                        </li> 
- 
-                        <li> 
-                            <a href="servicos.html" class="ativo"> 
-                                <i class="fa-solid fa-laptop-code"></i> 
-                                Serviços 
-                            </a> 
-                        </li> 
- 
-                        <li> 
-                            <a href="projetos.html"> 
-                                <i class="fa-solid fa-folder-open"></i> 
-                                Projetos 
-                            </a> 
-                        </li> 
- 
-                        <li> 
-                            <a href="contato.html"> 
-                                <i class="fa-solid fa-envelope"></i> 
-                                Contato 
-                            </a> 
-                        </li> 
- 
-                    </ul> 
- 
-                </nav> 
- 
-            </div> 
- 
-        </header> 
- 
- 
-        <!-- HERO --> 
- 
-        <section class="hero hero-interno"> 
- 
-            <div class="hero-container"> 
- 
-                <div class="hero-foto"> 
- 
-                    <div class="foto-perfil"> 
- 
-                        <img 
-                            src="foto-perfil.jpeg" 
-                            alt="Willyann Teodoro Ramos" 
-                        > 
- 
-                    </div> 
- 
-                </div> 
- 
- 
-                <div class="hero-texto"> 
- 
-                    <h1> 
- 
-                        <strong> 
-                            Willyann Teodoro Ramos 
-                        </strong> 
- 
-                    </h1> 
- 
-                    <p class="subtitulo"> 
- 
-                        Desenvolvedor | 
-                        Analista de Sistemas | 
-                        Banco de Dados 
- 
-                    </p> 
- 
-                </div> 
- 
-            </div> 
- 
-        </section> 
- 
- 
-<!-- =================================================
-     FORMULÁRIO
-================================================== -->
-
-<main class="contato">
-
-    <h2 class="titulo-secao">
-        Solicitar Orçamento
-    </h2>
-
-    <p class="subtitulo-contato">
-        Preencha os dados abaixo para conversarmos sobre sua necessidade.
-    </p>
-
-
-    <div class="formulario-container">
-
-        <form
-            action="/salvar"
-            method="POST"
-            class="form-contato"
-        >
-
-
-            <!-- NOME -->
-
-            <div class="grupo-input">
-
-                <label for="nome">
-
-                    <i class="fa-solid fa-user"></i>
-
-                    Seu Nome Completo
-
-                </label>
-
-                <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    placeholder="Digite seu nome completo"
-                    autocomplete="name"
-                    required
-                >
-
+    <!-- HERO -->
+    <section class="hero hero-interno">
+        <div class="hero-container">
+            <div class="hero-foto">
+                <div class="foto-perfil">
+                    <img src="foto-perfil.jpeg" alt="Willyann Teodoro Ramos">
+                </div>
             </div>
-
-
-
-            <!-- E-MAIL -->
-
-            <div class="grupo-input">
-
-                <label for="email">
-
-                    <i class="fa-solid fa-envelope"></i>
-
-                    Seu Melhor E-mail
-
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="seuemail@exemplo.com"
-                    autocomplete="email"
-                    required
-                >
-
+            <div class="hero-texto">
+                <h1><strong>Willyann Teodoro Ramos</strong></h1>
+                <p class="subtitulo">Desenvolvedor | Analista de Sistemas | Banco de Dados</p>
             </div>
+        </div>
+    </section>
 
+    <!-- INICIALIZAR FIREBASE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
-            <!-- BOTÃO -->
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqJDhYHquTkFHTm35HkfSLZBzLHFLnmns",
+            authDomain: "willyann-portifilio.firebaseapp.com",
+            projectId: "willyann-portifilio",
+            storageBucket: "willyann-portifilio.firebasestorage.app",
+            messagingSenderId: "52245895377",
+            appId: "1:52245895377:web:6935698036704275954df0"
+        };
 
-            <button
-                type="submit"
-                class="btn enviar"
-            >
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
 
-                <i class="fas fa-paper-plane"></i>
+    <!-- FORMULÁRIO -->
+    <main class="contato">
+        <h2 class="titulo-secao">Solicitar Orçamento</h2>
+        <p class="subtitulo-contato">Preencha os dados abaixo para conversarmos sobre sua necessidade.</p>
 
-                Enviar Solicitação
+        <div class="formulario-container">
+            <form id="formSolicitacao" class="form-contato">
+                
+                <!-- NOME -->
+                <div class="grupo-input">
+                    <label for="nome">
+                        <i class="fa-solid fa-user"></i> Seu Nome Completo
+                    </label>
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome completo"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
 
-            </button>
+                <!-- E-MAIL -->
+                <div class="grupo-input">
+                    <label for="email">
+                        <i class="fa-solid fa-envelope"></i> Seu Melhor E-mail
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
 
-        </form>
+                <!-- BOTÃO -->
+                <button type="submit" class="btn enviar">
+                    <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                </button>
+            </form>
+        </div>
 
-    </div>
+        <!-- VOLTAR -->
+        <div class="contato-voltar">
+            <a href="servicos.html" class="btn">
+                <i class="fas fa-arrow-left"></i> Voltar para serviços
+            </a>
+        </div>
+    </main>
 
+    <!-- SCRIPT DE ENVIO -->
+    <script type="module">
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
+        const form = document.getElementById('formSolicitacao');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede o erro 404
+            
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
 
-    <!-- VOLTAR -->
+            try {
+                await addDoc(collection(window.db, "clientes"), {
+                    nome: nome,
+                    email: email,
+                    assunto: "Solicitação de Orçamento",
+                    mensagem: "",
+                    data: new Date()
+                });
+                // Vai pra página de sucesso
+                window.location.href = 'sucesso.html';
+            } catch (erro) {
+                alert('Erro ao enviar. Tente novamente!');
+                console.error(erro);
+            }
+        });
+    </script>
 
-    <div class="contato-voltar">
+    <footer>
+        <p>© 2026 Willyann Teodoro Ramos. Todos os direitos reservados.</p>
+        <p>Feito com 💻 e dedicação!</p>
+    </footer>
 
-        <a
-            href="servicos.html"
-            class="btn"
-        >
-
-            <i class="fas fa-arrow-left"></i>
-
-            Voltar para serviços
-
-        </a>
-
-    </div>
-
-</main>
- 
-        <footer> 
- 
-            <p> 
-                © 2026 Willyann Teodoro Ramos. 
-                Todos os direitos reservados. 
-            </p> 
- 
-            <p> 
-                Feito com 💻 e dedicação! 
-            </p> 
- 
-        </footer> 
- 
-    </body> 
- 
-    </html> 
+</body>
+</html>
